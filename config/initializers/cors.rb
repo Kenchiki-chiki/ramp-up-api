@@ -5,12 +5,13 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-# Rails.application.config.middleware.insert_before 0, Rack::Cors do
-#   allow do
-#     origins 'example.com'
-#
-#     resource '*',
-#       headers: :any,
-#       methods: [:get, :post, :put, :patch, :delete, :options, :head]
-#   end
-# end
+# for devise_token_auth
+config.middleware.use Rack::Cors do
+  allow do
+    origins '*'
+    resource '*',
+      :headers => :any,
+      :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+      :methods => [:get, :post, :options, :delete, :put]
+  end
+end
