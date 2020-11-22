@@ -8,6 +8,7 @@ DeviseTokenAuth.setup do |config|
   # headersの名前対応
   config.headers_names = {:'access-token' => 'access-token',
                           :'client' => 'client',
+                          :'expiry' => 'expiry',
                           :'uid' => 'uid',
                           :'token-type' => 'token-type' }
 end
