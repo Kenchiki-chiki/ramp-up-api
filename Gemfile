@@ -10,9 +10,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'pry-byebug'
 gem 'pry-rails'
 gem 'pry-doc'
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'devise'
+gem 'devise_token_auth'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
