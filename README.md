@@ -21,10 +21,14 @@
 $ bundle install
 ```
 
-#### データベース初期設定
+#### Posgresqlの導入
 ```
 $ brew install postgresql
 $ brew services start postgresql
+```
+
+#### データベース初期設定
+```
 $ rails db:create
 $ rails db:migrate
 ```
