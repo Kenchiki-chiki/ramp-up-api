@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# 技術スタック
 
-* Ruby version
+## 言語・フレームワーク
+Ruby 2.6.6
+Rails 6.0.3.4
 
-* System dependencies
+## データベース
+postgresql
 
-* Configuration
+## 環境構築
 
-* Database creation
+### gem
+devise
+devise_token_auth
+rack-cors
 
-* Database initialization
+### インストール
+$ bundle install
 
-* How to run the test suite
+### データベース初期設定
+$ brew install postgresql
+$ brew services start postgresql
+$ rails db:create
+$ rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+### 起動
+$ rails s
+http://localhost:3000
 
-* Deployment instructions
-
-* ...
