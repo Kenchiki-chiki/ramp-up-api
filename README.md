@@ -13,11 +13,11 @@
 #### 環境構築
 
 ##### gem
-```
-devise
-devise_token_auth
-rack-cors
-```
+
+- devise
+- devise_token_auth
+- rack-cors
+
 
 ##### インストール
 ```
