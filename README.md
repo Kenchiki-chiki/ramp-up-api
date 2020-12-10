@@ -11,7 +11,7 @@
 - Postgresql
 
 ## ER図
-
+<img width="636" alt="ER図(12:9)" src="https://user-images.githubusercontent.com/65106886/101722062-c7942600-3aec-11eb-9f0b-2eb05510379e.png">
 
 ## 環境構築
 
