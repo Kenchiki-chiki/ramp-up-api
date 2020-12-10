@@ -1,30 +1,27 @@
-# README
-
-
 ## 技術スタック
 
-##### 言語・フレームワーク
+#### 言語・フレームワーク
 - Ruby 2.6.6
 - Rails 6.0.3.4
 
-##### データベース
+#### データベース
 - postgresql
 
 ## 環境構築
 
-##### gem
+#### gem
 
 - devise
 - devise_token_auth
 - rack-cors
 
 
-##### インストール
+#### インストール
 ```
 $ bundle install
 ```
 
-##### データベース初期設定
+#### データベース初期設定
 ```
 $ brew install postgresql
 $ brew services start postgresql
@@ -32,7 +29,7 @@ $ rails db:create
 $ rails db:migrate
 ```
 
-##### 起動
+#### 起動
 ```
 $ rails s
 http://localhost:3000
