@@ -5,7 +5,7 @@
 - Rails 6.0.3.4
 
 #### データベース
-- ostgresql
+- Postgresql
 
 ## 環境構築
 
