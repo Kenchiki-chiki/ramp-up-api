@@ -10,6 +10,11 @@ Ramp Upは、学習記録を可視化するアプリです。手軽に学習時�
 #### データベース
 - Postgresql
 
+#### gem
+- devise
+- devise_token_auth
+- rack-cors
+
 ## 機能一覧
 - 新規登録・ログイン・ログアウト機能
 - スキル(学習項目)設定機能
@@ -25,13 +30,6 @@ Ramp Upは、学習記録を可視化するアプリです。手軽に学習時�
 <img width="636" alt="ER図(12:9)" src="https://user-images.githubusercontent.com/65106886/101722062-c7942600-3aec-11eb-9f0b-2eb05510379e.png">
 
 ## 環境構築
-
-#### gem
-
-- devise
-- devise_token_auth
-- rack-cors
-
 
 #### インストール
 ```
