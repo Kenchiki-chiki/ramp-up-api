@@ -39,7 +39,7 @@ $ rails db:create
 $ rails db:migrate
 ```
 
-#### 起動
+## 起動
 ```
 $ rails s
 http://localhost:3000
