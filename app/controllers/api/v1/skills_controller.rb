@@ -6,21 +6,13 @@ class Api::V1::SkillsController < ApplicationController
   end
 
   def create
-    binding.pry
-    # skill = Skill.new(skill_params)
-    # skill_params = params[:skill_params]
-
-    skills =
-      skill_params.each do |skill_param|
-        skill = Skill.new(skill_param)
-        skill.save
+    Skill.transaction do
+      skill_params[:names].each do |name|
+        current_user.skills.create!(name: name)
       end
-
-    if skills.present?
-      render json: skill, status: :create
-    else
-      render json: skill.errors, status: :unprocessable_entity
     end
+
+    render status: :created, body: nil
   end
 
   private
