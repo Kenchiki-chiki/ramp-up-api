@@ -8,7 +8,7 @@ class Api::V1::SkillsController < ApplicationController
   def create
     binding.pry
     # skill = Skill.new(skill_params)
-    skill_params = params[:skill_params]
+    # skill_params = params[:skill_params]
 
     skills =
       skill_params.each do |skill_param|
