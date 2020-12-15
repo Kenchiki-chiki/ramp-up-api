@@ -1,4 +1,5 @@
 class Api::V1::SkillsController < ApplicationController
+  before_action :authenticate_api_v1_user!
 
   def index
     skills = Skill.all
@@ -7,17 +8,18 @@ class Api::V1::SkillsController < ApplicationController
 
   def create
     Skill.transaction do
-      skill_params[:names].each do |name|
-        current_user.skills.create!(name: name)
+      current_api_v1_user = User.find_by(email: request.headers[:Uid])
+      binding.pry
+      skill_params[:_json].each do |name|
+        current_api_v1_user.skills.create!(name: name)
       end
     end
-
     render status: :created, body: nil
-  end
+ end
 
   private
 
   def skill_params
-    params.require(:skill).permit(names:[])
+    params.permit(_json:[])
   end
 end
