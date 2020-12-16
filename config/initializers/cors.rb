@@ -7,7 +7,7 @@
 
 # for devise_token_auth
 
-Rails.application.config.middleware.use Rack::Cors do
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins '*'
     resource '*',
