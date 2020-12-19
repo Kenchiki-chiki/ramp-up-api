@@ -8,12 +8,12 @@ class Api::V1::SkillsController < ApplicationController
 
   def create
     skillName = Skill.transaction do
-      skill_params[:_json].each do |name|
+      skill_params[:_json].compact.reject(&:empty?).each do |name|
         current_api_v1_user.skills.create!(name: name)
       end
     end
     render json: skillName, status: :created
- end
+  end
 
   private
 
@@ -21,3 +21,4 @@ class Api::V1::SkillsController < ApplicationController
     params.permit(_json:[])
   end
 end
+
