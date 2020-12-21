@@ -2,6 +2,7 @@ class Api::V1::SkillsController < ApplicationController
   before_action :authenticate_api_v1_user!
 
   def index
+    # createdメソッドで叩く→nuxtに返してvuexに保存
     skills = Skill.all
     render json: skills
   end
