@@ -22,4 +22,3 @@ class Api::V1::SkillsController < ApplicationController
     params.permit(_json:[])
   end
 end
-
