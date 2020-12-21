@@ -7,12 +7,12 @@ class Api::V1::SkillsController < ApplicationController
   end
 
   def create
-    Skill.transaction do
+    skillName = Skill.transaction do
       skill_params[:_json].each do |name|
         current_api_v1_user.skills.create!(name: name)
       end
     end
-    render status: :created, body: nil
+    render json: skillName, status: :created
  end
 
   private
