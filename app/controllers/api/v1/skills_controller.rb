@@ -3,8 +3,14 @@ class Api::V1::SkillsController < ApplicationController
 
   def index
     # createdメソッドで叩く→nuxtに返してvuexに保存
-    skills = Skill.all
+
+    # 今ログインしているユーザーに紐づくスキルをDBから配列で取得
+    skills = User.where(name: current_api_v1_user.skills.name).pluck(:name)
+    binding.pry
     render json: skills
+
+    # skills = current_api_v1_user.skills
+    # render json: skills
   end
 
   def create
