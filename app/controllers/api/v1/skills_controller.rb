@@ -6,7 +6,7 @@ class Api::V1::SkillsController < ApplicationController
 
     # 今ログインしているユーザーに紐づくスキルをDBから配列で取得
     # skills = Skill.where(name: current_api_v1_user.skills.name).pluck(:name)
-    skills = current_api_v1_user.skills.pluck(:name)
+    skills = current_api_v1_user.skills
     # binding.pry
     render json: skills
 
