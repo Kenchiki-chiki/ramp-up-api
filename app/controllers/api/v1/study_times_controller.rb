@@ -3,14 +3,9 @@ class Api::V1::StudyTimesController < ApplicationController
 
   end
 
+  
+
   def create
-    binding.pry
-    # studyTime = StudyTime.transaction do
-    #   study_time_params[:_json].each do |study_hour|
-    #     current_api_v1_user.skills.study_hour.create!(study_hour: study_hour)
-    #   end
-    # end
-    # render json: studyTime, status: :created
 
     StudyTime.transaction do
       params[:study_times].each do |param|
@@ -19,12 +14,16 @@ class Api::V1::StudyTimesController < ApplicationController
         skill.study_times.create!(study_hour: param[:study_hour], studied_on: Date.current)
       end
     end
+    
+    # totalStudyTimes = Skill.joins(:study_times).where(study_times: { studied_on: Date.current}, user_id: current_api_v1_user.id ).pluck(:study_hour)
+    totalStudyTimes = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
 
-    # render json: studyTime.all.sum(:study_hour), status: :created
+
   end
+  
 
   def study_time_params
-    
+
     # Parameters: { study_time => {skill_id: 1, study_hour: 4}, {skill_id: 2, study_hour: 6,}}
     #params.permit(study_time: [])
   end
