@@ -1,6 +1,8 @@
 class Api::V1::StudyTimesController < ApplicationController
   def index
+    totalStudyTimes = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
 
+    render json: totalStudyTimes, status: :created
   end
 
   
@@ -17,6 +19,9 @@ class Api::V1::StudyTimesController < ApplicationController
     
     # totalStudyTimes = Skill.joins(:study_times).where(study_times: { studied_on: Date.current}, user_id: current_api_v1_user.id ).pluck(:study_hour)
     totalStudyTimes = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
+    binding.pry
+
+    render json: totalStudyTimes, status: :created
 
 
   end
