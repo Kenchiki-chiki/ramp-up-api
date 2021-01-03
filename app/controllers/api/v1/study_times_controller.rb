@@ -19,15 +19,13 @@ class Api::V1::StudyTimesController < ApplicationController
         studyTime = existingStudyTime + paramStudyTime
         # binding.pry
         
-    if studyTime <= 24
-      StudyTime.transaction do
-        skill =current_api_v1_user.skills.find(param[:skill_id])
-        skill.study_times.create!(study_hour: param[:study_hour], studied_on: Date.current)
-      end
-    else
-      raise "1日の学習時間が24時間を超えています。"
-      render json: { error: studyTime.errors.full_messages }
-    end
+        if studyTime <= 24         
+            skill =current_api_v1_user.skills.find(param[:skill_id])
+            skill.study_times.create!(study_hour: param[:study_hour], studied_on: Date.current)
+        else
+          raise "1日の学習時間が24時間を超えています。"
+          render json: { error: studyTime.errors.full_messages }
+        end
 
       end
     end
