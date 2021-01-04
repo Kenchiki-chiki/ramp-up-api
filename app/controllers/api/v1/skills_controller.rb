@@ -13,7 +13,6 @@ class Api::V1::SkillsController < ApplicationController
     # skills = current_api_v1_user.skills
     # render json: skills
   end
-
   def create
     skillName = Skill.transaction do
       skill_params[:_json].compact.reject(&:empty?).each do |name|
