@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :skills
       resources :study_times
       resources :charts
+      resources :pie_charts
     end
   end
 
