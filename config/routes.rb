@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth'
       resources :skills
       resources :study_times
-      resources :charts
+      resources :bar_charts
       resources :pie_charts
     end
   end

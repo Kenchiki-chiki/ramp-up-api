@@ -1,4 +1,4 @@
-class Api::V1::ChartsController < ApplicationController
+class Api::V1::BarChartsController < ApplicationController
   def index
     monthlyStudyTimes = []
 
