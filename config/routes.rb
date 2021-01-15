@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :bar_charts
       resources :pie_charts
       resources :calendars
+      resources :all_study_times
     end
   end
 
