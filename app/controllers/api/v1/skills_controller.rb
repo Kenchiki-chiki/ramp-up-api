@@ -23,6 +23,14 @@ class Api::V1::SkillsController < ApplicationController
     render json: skillName, status: :created
   end
 
+  def destroy
+    # binding.pry
+    skill = Skill.find(params[:id])
+    if skill.destroy
+      render json: skill
+    end
+  end
+
   private
 
   def skill_params
