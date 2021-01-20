@@ -10,6 +10,14 @@ Rails.application.routes.draw do
       resources :pie_charts
       resources :calendars
       resources :all_study_times
+      resources :tasks do
+        collection do
+          delete 'destroy_all'
+        end
+        collection do
+          get 'fetch_edit_task'
+        end
+      end
     end
   end
 
