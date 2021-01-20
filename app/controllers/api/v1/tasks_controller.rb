@@ -41,10 +41,18 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
+    errors = []
     task = Task.find(task_params[:_json][0])
-    if task.update(name: task_params[:_json][1])
-      render json: task, status: :created
+
+    if task_params[:_json][1].length <= 40
+      if task.update(name: task_params[:_json][1])
+        render json: task, status: :created
+      end
+    else
+      errors << "40文字以下で入力してください。"
+      render json: { errors: errors }, status: :created
     end
+    
   end
 
   def destroy_all
