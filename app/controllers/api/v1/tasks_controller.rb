@@ -15,7 +15,7 @@ class Api::V1::TasksController < ApplicationController
       end
 
       tasks = task_params[:_json].each do |task|
-        if Task.under_max_length?(task)
+        if task.length <= 40
           current_api_v1_user.tasks.create!(name: task)
         else
           errors << "40文字以下で入力してください。"
