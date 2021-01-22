@@ -1,19 +1,13 @@
 class Api::V1::PieChartsController < ApplicationController
   def index
-    bySkillStudyTimesArray = []
-    bySkillStudyTimesHash = current_api_v1_user.skills.joins(:study_times).group(:name).sum(:study_hour)
-    bySkillStudyTimesArray << bySkillStudyTimesHash.keys
-    bySkillStudyTimesArray << bySkillStudyTimesHash.values
-    bySkillStudyTimesArray2 = []
-    
-    bySkillStudyTimesArray << bySkillStudyTimesHash.to_a
-    # binding.pry
-
-    # [{rails: 4, vue: 7}]
-    # {rails: 4, vue: 7}
-    # [["rails", 4], ["vue", 7]]
+    by_skill_study_times_array = []
+    by_skill_study_times_hash = current_api_v1_user.skills.joins(:study_times).group(:name).sum(:study_hour)
+    by_skill_study_times_array << by_skill_study_times_hash.keys
+    by_skill_study_times_array << by_skill_study_times_hash.values
+    by_skill_study_times_array2 = []   
+    by_skill_study_times_array << by_skill_study_times_hash.to_a
   
-    render json: bySkillStudyTimesArray, status: :created
+    render json: by_skill_study_times_array, status: :created
 
   end
 end
