@@ -1,23 +1,20 @@
 class Api::V1::StudyTimesController < ApplicationController
   def index
-    totalStudyTimes = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
+    total_study_times = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
 
-    render json: totalStudyTimes, status: :created
+    render json: total_study_times, status: :created
   end
 
   def create
-    studyTime = 0
+    study_time = 0
     StudyTime.transaction do
       params[:study_times].each do |param|
         next if param[:study_hour].blank?
-        existingStudyTime = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).sum(:study_hour)
-        # binding.pry
-        paramStudyTime = param[:study_hour].to_i
-        # binding.pry
-        studyTime = existingStudyTime + paramStudyTime
-        # binding.pry
+        existing_study_time = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).sum(:study_hour)
+        param_study_time = param[:study_hour].to_i
+        study_time = existing_study_time + param_study_time
 
-        if studyTime <= 24
+        if study_time <= 24
             skill = current_api_v1_user.skills.find(param[:skill_id])
             skill.study_times.create(study_hour: param[:study_hour], studied_on: Date.current)
         else
@@ -27,12 +24,12 @@ class Api::V1::StudyTimesController < ApplicationController
       end
     end
 
-    if studyTime > 24
+    if study_time > 24
       render json: { errors: ["1日の学習時間が24時間を超えています。"] }, status: :created
     else
-      totalStudyTimes = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
+      total_study_times = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
 
-      render json: totalStudyTimes, status: :created
+      render json: total_study_times, status: :created
     end
   end
 end
