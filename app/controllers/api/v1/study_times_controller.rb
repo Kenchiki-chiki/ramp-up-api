@@ -1,7 +1,4 @@
 class Api::V1::StudyTimesController < ApplicationController
-
-
-
   def index
     totalStudyTimes = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
 
@@ -33,23 +30,9 @@ class Api::V1::StudyTimesController < ApplicationController
     if studyTime > 24
       render json: { errors: ["1日の学習時間が24時間を超えています。"] }, status: :created
     else
-      # totalStudyTimes = Skill.joins(:study_times).where(study_times: { studied_on: Date.current}, user_id: current_api_v1_user.id ).pluck(:study_hour)
       totalStudyTimes = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
 
       render json: totalStudyTimes, status: :created
     end
-
-
-  end
-
-  # existingStudyTime = StudyTime.where(studied_on: Date.current).sum(:study_hour)
-  # paramStudyTime = param[:study_hour]
-  # StudyTime = existingStudyTime + paramStudyTime
-
-
-  def study_time_params
-
-    # Parameters: { study_time => {skill_id: 1, study_hour: 4}, {skill_id: 2, study_hour: 6,}}
-    #params.permit(study_time: [])
   end
 end

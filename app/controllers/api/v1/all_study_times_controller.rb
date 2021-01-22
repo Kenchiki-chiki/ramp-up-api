@@ -1,6 +1,5 @@
 class Api::V1::AllStudyTimesController < ApplicationController
   def index
-
     allStudyTimesHashs = current_api_v1_user.study_times.select('SUM(study_hour) as total_study_hour, studied_on').group(:studied_on).map{|s| {total_study_hour: s.total_study_hour, studied_on: s.studied_on}}
     
     allStudyTimesColorHashs = allStudyTimesHashs.each do |hash|

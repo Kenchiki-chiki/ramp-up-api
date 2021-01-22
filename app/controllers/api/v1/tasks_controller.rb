@@ -33,7 +33,6 @@ class Api::V1::TasksController < ApplicationController
       else
         render json: tasks, status: :created
       end
-
   end
 
   def fetch_edit_task
@@ -53,13 +52,11 @@ class Api::V1::TasksController < ApplicationController
       errors << "40文字以下で入力してください。"
       render json: { errors: errors }, status: :created
     end
-
   end
 
   def destroy_all
     Task.destroy_all
   end
-
 end
 
 private
