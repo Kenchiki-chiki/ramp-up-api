@@ -8,31 +8,32 @@ class Api::V1::TasksController < ApplicationController
   def create
     errors = []
     tasks = []
+
     Task.transaction do
       if task_params[:_json].all?{ |value| value === "" }
         errors << "タスクが入力されていません。"
       end
 
       tasks = task_params[:_json].each do |task|
-        if task.length <= 40
+        if Task.under_max_length?(task)
           current_api_v1_user.tasks.create!(name: task)
         else
           errors << "40文字以下で入力してください。"
-          raise ActiveRecord::Rollback        
-        end        
+          raise ActiveRecord::Rollback
+        end
       end
 
       if errors.present?
-        raise ActiveRecord::Rollback       
-      end      
+        raise ActiveRecord::Rollback
+      end
     end
 
       if errors.present?
-        render json: { errors: errors }, status: :created       
+        render json: { errors: errors }, status: :created
       else
         render json: tasks, status: :created
       end
-    
+
   end
 
   def fetch_edit_task
@@ -52,13 +53,12 @@ class Api::V1::TasksController < ApplicationController
       errors << "40文字以下で入力してください。"
       render json: { errors: errors }, status: :created
     end
-    
+
   end
 
   def destroy_all
     Task.destroy_all
   end
-
 
 end
 

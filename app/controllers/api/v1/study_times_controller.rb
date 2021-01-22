@@ -1,11 +1,12 @@
 class Api::V1::StudyTimesController < ApplicationController
+
+
+
   def index
     totalStudyTimes = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
 
     render json: totalStudyTimes, status: :created
   end
-
-  
 
   def create
     studyTime = 0
@@ -18,9 +19,9 @@ class Api::V1::StudyTimesController < ApplicationController
         # binding.pry
         studyTime = existingStudyTime + paramStudyTime
         # binding.pry
-        
-        if studyTime <= 24         
-            skill =current_api_v1_user.skills.find(param[:skill_id])
+
+        if studyTime <= 24
+            skill = current_api_v1_user.skills.find(param[:skill_id])
             skill.study_times.create(study_hour: param[:study_hour], studied_on: Date.current)
         else
           raise ActiveRecord::Rollback
@@ -28,7 +29,7 @@ class Api::V1::StudyTimesController < ApplicationController
 
       end
     end
-    
+
     if studyTime > 24
       render json: { errors: ["1日の学習時間が24時間を超えています。"] }, status: :created
     else
@@ -44,7 +45,7 @@ class Api::V1::StudyTimesController < ApplicationController
   # existingStudyTime = StudyTime.where(studied_on: Date.current).sum(:study_hour)
   # paramStudyTime = param[:study_hour]
   # StudyTime = existingStudyTime + paramStudyTime
-  
+
 
   def study_time_params
 
