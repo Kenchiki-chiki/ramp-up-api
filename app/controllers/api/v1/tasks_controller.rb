@@ -30,11 +30,11 @@ class Api::V1::TasksController < ApplicationController
       end
     end
 
-      if errors.present?
-        render json: { errors: errors }, status: :created
-      else
-        render json: tasks, status: :created
-      end
+    if errors.present?
+      render json: { errors: errors }, status: :created
+    else
+      render json: tasks, status: :created
+    end
   end
 
   def fetch_edit_task
