@@ -2,7 +2,7 @@ class Api::V1::SkillsController < ApplicationController
   before_action :authenticate_api_v1_user!
 
   def index
-    skills = current_api_v1_user.skills
+    skills = current_api_v1_user.skills.order(:id)
     render json: skills
   end
 
