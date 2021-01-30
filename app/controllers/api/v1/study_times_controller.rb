@@ -1,4 +1,5 @@
 class Api::V1::StudyTimesController < ApplicationController
+  before_action :authenticate_api_v1_user!
   def index
     total_study_times = current_api_v1_user.skills.joins(:study_times).where(study_times: { studied_on: Date.current} ).pluck(:study_hour)
 

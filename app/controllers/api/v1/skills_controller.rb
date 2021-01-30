@@ -14,7 +14,7 @@ class Api::V1::SkillsController < ApplicationController
 
     Skill.transaction do
       if skill_params[:_json].all?{ |value| value === "" }
-        errors << "スキルが入力されていません。"
+        errors << "スキル名が入力されていません。"
       end
 
       skills = skill_params[:_json].compact.reject(&:empty?).each do |name|
