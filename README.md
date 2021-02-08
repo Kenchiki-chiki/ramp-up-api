@@ -128,3 +128,32 @@ Ramp Upは、手軽に学習記録や振り返りができる学習管理アプ�
 
 ![demo](https://gyazo.com/20ff34db020f3d0a188753e51e53efb1/raw)
 
+# テーブル
+
+## usersテーブル
+|Colmun  |Type  |Options  |
+|---|---|---|
+|email  |string  |null: false  |
+|password  |string  |null: false  |
+|provider  |string  |default: "email", null: false  |
+|uid  |string  |default: "", null: false  |
+
+
+## skillsテーブル
+|Colmun  |Type  |Options  |
+|---|---|---|
+|user_id  |bigint  |null: false, foreign_key:true  |
+|name  |string  |  |
+
+## study_timesテーブル
+|Colmun  |Type  |Options  |
+|---|---|---|
+|skill_id  |bigint  |null: false, foreign_key:true  |
+|study_hour  |float  |  |
+|studied_on  |date  |  |
+
+## tasksテーブル
+|Colmun  |Type  |Options  |
+|---|---|---|
+|user_id  |bigint  |null: false, foreign_key:true  |
+|name  |  |  |
